@@ -6,6 +6,9 @@ import Filter from "./Filter/Filter";
 import { fetchContacts } from '../redux/contacts/contacts-operations'
 import { selectContacts } from '../redux/contacts/contacts-selectors'
 
+import SignupPage from '../pages/SignupPage/SignupPage'
+import LoginPage from "../pages/LoginPage/LoginPage";
+
 const App = () => {
 
   const {items, isLoading, error} = useSelector(selectContacts);
@@ -17,6 +20,8 @@ const App = () => {
 
     return (
       <div className="container">
+        <SignupPage />
+        <LoginPage/>
         <h1>Phonebook</h1>
         <ContactsForm />
         {/* якщо є список контактів рендеримо розмітку, якщо пусто - то ні */}
