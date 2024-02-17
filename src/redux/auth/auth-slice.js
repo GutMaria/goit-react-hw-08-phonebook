@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, signup } from './auth-operaions';
+import { login, signup, current, logout } from './auth-operaions';
 
 const initialState = {
   user: {},
@@ -40,7 +40,29 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isLogin = true;
       })
-      .addCase(login.rejected, rejected);
+      .addCase(login.rejected, rejected)
+      .addCase(current.pending, pending)
+      .addCase(current.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        // токен не перезаписуємо бо він не приходить у відповідь
+        state.isLoading = false;
+        state.isLogin = true;
+      })
+      .addCase(current.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isLoading = false;
+        state.isLogin = false;
+        state.token = '';
+        // скидаємо токен
+      })
+      .addCase(logout.pending, pending)
+      .addCase(logout.fulfilled, state => {
+        state.isLoading = false;
+        state.isLogin = false;
+        state.user = {};
+        state.token = '';
+      })
+      .addCase(logout.rejected, rejected);
   },
 });
 

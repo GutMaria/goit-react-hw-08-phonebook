@@ -1,5 +1,6 @@
 import LoginForm from "../../components/LoginForm/LoginForm"
-import {  useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { Navigate } from "react-router-dom";
 import {login} from '../../redux/auth/auth-operaions'
 import {selectAuthLoading, selectAuthError, selectIsLogin, selectUser} from '../../redux/auth/auth-selectors'
 
@@ -17,6 +18,10 @@ const LoginPage = () => {
   const handleLogin = (body) => {
     dispatch(login(body))
   }
+
+  if(isLogin) {
+        return <Navigate to="/contacts" /> 
+    }
   
   return (<>
     <h1>Сторінка LogIn</h1>

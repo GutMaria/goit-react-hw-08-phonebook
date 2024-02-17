@@ -1,39 +1,32 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import ContactsForm from './ContactsForm/ContactsForm';
-import ContactsList from './ContactsList/ContactsList'
-import Filter from "./Filter/Filter";
-import { fetchContacts } from '../redux/contacts/contacts-operations'
-import { selectContacts } from '../redux/contacts/contacts-selectors'
+import { Routes, Route } from "react-router-dom";
 
+import { useEffect } from "react";
+import {useDispatch} from "react-redux";
+
+import { current } from "../redux/auth/auth-operaions";
+
+import Navbar from "./Navbar/Navbar";
+import ContactsPage from '../pages/ContactsPage/ContactsPage'
 import SignupPage from '../pages/SignupPage/SignupPage'
-import LoginPage from "../pages/LoginPage/LoginPage";
+import LoginPage from '../pages/LoginPage/LoginPage'
 
 const App = () => {
 
-  const {items, isLoading, error} = useSelector(selectContacts);
-
-      const dispatch = useDispatch();
-      useEffect(() => {
-        dispatch(fetchContacts())
-      },[dispatch])
+const dispatch = useDispatch();
+// перевірка current користувача при перезавантажені сторінки. Токен відслідковую persist і зберігає в localStorage
+  useEffect(()=> {
+    dispatch(current())
+  }, [dispatch]);
 
     return (
-      <div className="container">
-        <SignupPage />
-        <LoginPage/>
-        <h1>Phonebook</h1>
-        <ContactsForm />
-        {/* якщо є список контактів рендеримо розмітку, якщо пусто - то ні */}
-        {isLoading && <p>...Loading</p>}
-        {error && <p>{error}</p>}
-        {Boolean(items.length) && <>
-          <h2>Contacts</h2>
-          <Filter/>
-          <ContactsList />
-        </>
-        }
-      </div>
+      <Routes>
+            <Route path="/" element={<Navbar/>}>
+                <Route path="signup" element={<SignupPage />} />
+                <Route path="login" element={<LoginPage />} />
+                <Route path="contacts" element={<ContactsPage/>} />
+                {/* <Route path="*" element={<NotFoundPage />} /> */}
+            </Route>
+        </Routes>
     );
   }
 
