@@ -21,10 +21,7 @@ const LoginForm = ({onSubmit}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('handleSubmit Login');
-    console.log(state);
     onSubmit(state);
-    console.log('Зробили запит на Login')
     setState({ ...INITIAL_STATE })
     
   }

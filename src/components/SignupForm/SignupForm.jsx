@@ -23,10 +23,7 @@ const SignupForm = ({onSubmit}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('handleSubmit');
-    console.log(state);
     onSubmit(state);
-    console.log('Зробили запит')
     setState({ ...INITIAL_STATE })
     
   }

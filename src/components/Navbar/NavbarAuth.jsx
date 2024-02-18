@@ -3,8 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const NavbarAuth = ()=> {
     return (
-      <div >
-        Це NavbarAuth
+        <div >
             <NavLink to="/signup" >SignUp</NavLink>
             |
             <NavLink to="/login" >LogIn</NavLink>

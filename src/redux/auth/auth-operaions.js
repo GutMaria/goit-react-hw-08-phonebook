@@ -11,10 +11,8 @@ export const signup = createAsyncThunk(
   async (body, { rejectWithValue }) => {
     try {
       const { data } = await requestSignUp(body);
-      console.log(data);
       return data;
     } catch (error) {
-      console.log(error.message);
       return rejectWithValue(error.message);
     }
   }
@@ -25,11 +23,8 @@ export const login = createAsyncThunk(
   async (body, { rejectWithValue }) => {
     try {
       const { data } = await requestLogin(body);
-      console.log(data);
       return data;
     } catch (error) {
-      console.log('Error', error);
-      console.log('Error.message', error.message);
       return rejectWithValue(error.message);
     }
   }
@@ -40,9 +35,7 @@ export const current = createAsyncThunk(
   async (_, { rejectWithValue, getState }) => {
     try {
       const { auth } = getState();
-      console.log('Витягаємо токен', auth.token);
       const { data } = await currentRequest(auth.token);
-      console.log('Робимо запит в операціях, відповідь:', data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -63,7 +56,6 @@ export const logout = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await logoutRequest();
-      console.log('Зробила запит logout в operations:', data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

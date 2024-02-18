@@ -14,7 +14,7 @@ const ContactsList = () => {
     dispatch(deleteContact(id))
     }
     
-    const elements = items.map(({id, name, phone }) => <li key={id}>{name}: {phone}.  <button onClick={()=> onDeleteContact(id)} type="button" className={css.deleteBtn}>Delete</button></li>)
+    const elements = items.map(({id, name, number }) => <li key={id}>{name}: {number}  <button onClick={()=> onDeleteContact(id)} type="button" className={css.deleteBtn}>Delete</button></li>)
     
     return (<>
         {Boolean(items.length) && <ul className={css.list}>{elements}</ul>}

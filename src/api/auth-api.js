@@ -15,16 +15,13 @@ const setToken = token => {
 
 export const requestSignUp = async body => {
   const response = await authInstance.post('/users/signup', body);
-  console.log('requestSignUp з арі', response);
   setToken(response.data.token);
   return response;
 };
 
 export const requestLogin = async body => {
   const response = await authInstance.post('/users/login', body);
-  console.log(response);
   setToken(response.data.token);
-  console.log('token', response.data.token);
   return response;
 };
 
@@ -32,7 +29,6 @@ export const currentRequest = async token => {
   setToken(token);
   try {
     const response = await authInstance.get('/users/current');
-    console.log('Зробила запит current в api:', response);
     return response;
   } catch (error) {
     setToken();
@@ -42,8 +38,7 @@ export const currentRequest = async token => {
 
 export const logoutRequest = async () => {
   const response = await authInstance.post('/users/logout');
-  console.log('Зробила запит logout в api:', response);
-  // setToken();
+  setToken();
   return response;
 };
 
