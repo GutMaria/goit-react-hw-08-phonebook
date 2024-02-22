@@ -1,4 +1,5 @@
 import { useState, useId } from 'react';
+import { Button, FormControl, FormLabel, Input, Box, Center} from '@chakra-ui/react'
 
 const INITIAL_STATE = {
   name: '',
@@ -30,19 +31,22 @@ const SignupForm = ({onSubmit}) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor={nameId}>Name:</label>
-        <input onChange={handleChange} value={name} type="text" name="name" id={nameId}/>
-      </div>
-      <div>
-        <label htmlFor={emailId}>Email:</label>
-        <input onChange={handleChange} value={email} type="text" name="email" id={emailId} />
-      </div>
-      <div>
-        <label htmlFor={passwordId}>Password:</label>
-        <input onChange={handleChange} value={password} type="password" name="password" id={passwordId}/>
-      </div>
-      <button type='submit'>SignUp</button>
+      <FormControl w={400} isRequired bg='white' p="40px 30px 20px"  border='1px solid teal' borderRadius='15px' >
+      <Box mb='10px'>
+        <FormLabel htmlFor={nameId} >Name:</FormLabel>
+          <Input onChange={handleChange} value={name} id={ nameId} type="text" name="name" maxW='360px'/>
+      </Box>
+      <Box mb='10px'>
+        <FormLabel htmlFor={emailId}>Email:</FormLabel>
+        <Input onChange={handleChange} id={emailId} value={email} type="text" name="email" maxW='360px' />
+      </Box>
+      <Box mb='15px'>
+        <FormLabel htmlFor={passwordId}>Password:</FormLabel>
+          <Input onChange={handleChange} id={passwordId} value={password} type="password" name="password" maxW='360px' />
+        </Box>
+        <Center><Button type='submit' colorScheme='teal' >SignUp</Button></Center>
+        
+        </FormControl>
     </form>
   )
 }

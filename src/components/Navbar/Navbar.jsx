@@ -4,6 +4,7 @@ import NavbarAuth from './NavbarAuth'
 import NavbarUser from './NavbarUser'
 import { Outlet, Link } from "react-router-dom";
 import { Suspense } from "react";
+import { Container } from '@chakra-ui/react'
 
 
 const Navbar = () => {
@@ -14,7 +15,7 @@ const Navbar = () => {
     return <p>...Loading</p>
   }
 
-  return (<div className="container">
+  return (<Container m='60px auto'>
     <div style={{ display: 'flex', justifyContent: "space-between" }}>
       <Link to="/contacts">My phone book</Link>
       {isLogin ? <NavbarUser /> : <NavbarAuth />}
@@ -27,7 +28,7 @@ const Navbar = () => {
       <Outlet />
     </Suspense>
     
-  </div>)
+  </Container>)
 }
 
 export default Navbar;

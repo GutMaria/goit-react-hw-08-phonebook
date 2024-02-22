@@ -1,13 +1,23 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+} from '@chakra-ui/react'
 
 
 const NavbarAuth = ()=> {
     return (
-        <div >
-            <NavLink to="/signup" >SignUp</NavLink>
-            |
-            <NavLink to="/login" >LogIn</NavLink>
-        </div>
+<Breadcrumb fontSize='xl' fontWeight='medium' >
+  <BreadcrumbItem>
+    <BreadcrumbLink as={Link} to='/signup'>SignUp</BreadcrumbLink>
+  </BreadcrumbItem>
+
+  <BreadcrumbItem >
+    <BreadcrumbLink as={Link} to='/login'>LogIn</BreadcrumbLink>
+  </BreadcrumbItem>
+</Breadcrumb>
     )
 }
 

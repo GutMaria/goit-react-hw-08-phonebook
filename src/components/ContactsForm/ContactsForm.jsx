@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectContacts} from '../../redux/contacts/contacts-selectors'
 import { addContact } from '../../redux/contacts/contacts-operations'
-import { nanoid } from "nanoid";
-import css from './contacts-form.module.css'
+// import { nanoid } from "nanoid";
+// import css from './contacts-form.module.css'
+import { Button, FormControl,  FormLabel, Input} from '@chakra-ui/react'
 
 const INITIAL_STATE = {
     name: '',
@@ -33,8 +34,8 @@ const ContactsForm = () => {
     setState({...INITIAL_STATE});
   };
 
-  let contactNameId = nanoid();
-  let contactNumberId = nanoid();
+  // let contactNameId = nanoid();
+  // let contactNumberId = nanoid();
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -47,16 +48,18 @@ const ContactsForm = () => {
   }
   
     return (
-      <form onSubmit={handleSubmit} className={css.form}>
-        <div className={css.wrap}>
-          <label htmlFor={contactNameId}>Name</label>
-          <input value={state.name} type="text" id={contactNameId} required name="name" onChange={handleChange}/>
+      <form onSubmit={handleSubmit} >
+        <FormControl w={400} isRequired>
+        <div >
+          <FormLabel >Name</FormLabel>
+          <Input value={state.name} type="text"   name="name" onChange={handleChange}/>
         </div>
-        <div className={css.wrap}>
-        <label htmlFor={contactNumberId}>Number</label>
-          <input value={state.number} type="tel" id={contactNumberId} required name="number" onChange={handleChange}/>
+        <div >
+        <FormLabel >Number</FormLabel>
+          <Input value={state.number} type="tel"   name="number" onChange={handleChange}/>
         </div>
-        <button type="submit" className={css.btn}>Add contact</button>
+          <Button type="submit" colorScheme='teal' size='sm' >Add contact</Button>
+          </FormControl>
       </form>
     )
   }
