@@ -19,7 +19,7 @@ const SignupPage = () => {
   }
   
   return (<>
-    <h1>Сторінка Реєстрації</h1>
+    <h1>Please register</h1>
     <SignupForm onSubmit={handleSignup } />
     {loading && <p>...loading</p>}
     {error && <p>Помилка: {error}</p>}

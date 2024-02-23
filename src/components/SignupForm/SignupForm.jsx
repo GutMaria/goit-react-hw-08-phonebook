@@ -30,21 +30,21 @@ const SignupForm = ({onSubmit}) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <FormControl w={400} isRequired bg='white' p="40px 30px 20px"  border='1px solid teal' borderRadius='15px' >
+    <form onSubmit={handleSubmit} style={{ maxWidth: '360px' }}>
+      <FormControl maxW={[180, 300]} isRequired bg='white' p="40px 30px 20px"  border='1px solid teal' borderRadius='15px' >
       <Box mb='10px'>
         <FormLabel htmlFor={nameId} >Name:</FormLabel>
-          <Input onChange={handleChange} value={name} id={ nameId} type="text" name="name" maxW='360px'/>
+          <Input onChange={handleChange} value={name} id={ nameId} type="text" name="name" maxW={[150, 270]}/>
       </Box>
       <Box mb='10px'>
         <FormLabel htmlFor={emailId}>Email:</FormLabel>
-        <Input onChange={handleChange} id={emailId} value={email} type="text" name="email" maxW='360px' />
+        <Input onChange={handleChange} id={emailId} value={email} type="text" name="email" maxW={[150, 270]}/>
       </Box>
       <Box mb='15px'>
         <FormLabel htmlFor={passwordId}>Password:</FormLabel>
-          <Input onChange={handleChange} id={passwordId} value={password} type="password" name="password" maxW='360px' />
+          <Input onChange={handleChange} id={passwordId} value={password} type="password" name="password" maxW={[150, 270]} />
         </Box>
-        <Center><Button type='submit' colorScheme='teal' >SignUp</Button></Center>
+        <Center><Button type='submit' colorScheme='teal' >Sign up</Button></Center>
         
         </FormControl>
     </form>

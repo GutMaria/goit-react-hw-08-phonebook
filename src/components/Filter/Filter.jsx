@@ -13,9 +13,9 @@ const changeFitler = ({ target }) => {
       dispatch(setFilter(target.value))
     }
 
-  return <Flex  w='md' mb='20px'>
-            <Text fontSize='lg'mr='10px' >Find contacts by name:</Text>
-            <Input name="filter" flex='1' size='sm' width='auto' onChange={changeFitler} borderRadius={4} />
+  return <Flex  maxW={[240, 360]} m='20px 0px' flexWrap='wrap' alignItems='center'>
+            <Text fontSize='lg' fontWeight='medium'  m='0px' mr='10px' >Find contacts by name:</Text>
+            <Input  onChange={changeFitler} name="filter" flex='1' size='sm' w='auto' minW='120px' bg='white' border='1px solid teal' borderRadius='5px'/>
           </Flex>
 }
 

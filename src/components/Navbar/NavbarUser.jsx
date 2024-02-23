@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from '../../redux/auth/auth-selectors'
 
 import { logout } from "../../redux/auth/auth-operaions";
+import {  Button, Text, Flex } from '@chakra-ui/react'
 
 
 const NavbarUser = ()=> {
@@ -11,10 +12,10 @@ const NavbarUser = ()=> {
     const onLogout = ()=> dispatch(logout());
 
     return (
-        <div >
-            <p>{name}</p> 
-            <button onClick={onLogout}  type="button">LogOut</button>
-        </div>
+        <Flex >
+            <Text fontSize='2xl' color='teal' fontWeight='bold' m='0px 15px'>{name}</Text> 
+            <Button onClick={onLogout}  type="button" colorScheme='teal' variant='outline'>Log out</Button>
+        </Flex>
     )
 }
 

@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import { selectIsLogin, selectToken } from '../../redux/auth/auth-selectors'
 import NavbarAuth from './NavbarAuth'
 import NavbarUser from './NavbarUser'
-import { Outlet, Link } from "react-router-dom";
+import { Outlet} from "react-router-dom";
 import { Suspense } from "react";
-import { Container } from '@chakra-ui/react'
+import { Container, Flex} from '@chakra-ui/react'
 
 
 const Navbar = () => {
@@ -15,11 +15,11 @@ const Navbar = () => {
     return <p>...Loading</p>
   }
 
-  return (<Container m='60px auto'>
-    <div style={{ display: 'flex', justifyContent: "space-between" }}>
-      <Link to="/contacts">My phone book</Link>
+  return (<Container m='60px auto' p='0px 40px' width='auto' >
+    <Flex  justifyContent="end" alignItems='center'>
+      {/* <ChakraLink as={Link} to="/contacts">My phone book</ChakraLink> */}
       {isLogin ? <NavbarUser /> : <NavbarAuth />}
-    </div>
+    </Flex>
     
 
     

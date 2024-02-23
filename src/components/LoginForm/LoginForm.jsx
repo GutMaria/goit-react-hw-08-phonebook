@@ -22,25 +22,24 @@ const LoginForm = ({onSubmit}) => {
 
 
   const handleSubmit = (e) => {
-    console.log('Клік на логін')
     e.preventDefault();
     onSubmit(state);
     setState({ ...INITIAL_STATE })
     
   }
 
-  return (<form onSubmit={handleSubmit}>
-    <FormControl  w={400} isRequired bg='white' p="40px 30px 20px"  border='1px solid teal' borderRadius='15px'>
-      <Box mb='10px'>
+  return (<form onSubmit={handleSubmit} style={{ maxWidth: '360px' }}>
+    <FormControl maxW={[180, 300]} width='100%' isRequired bg='white'  p="40px 30px 20px"  border='1px solid teal' borderRadius='15px'>
+        <Box mb='10px' >
         <FormLabel htmlFor={emailId}>Email:</FormLabel>
-        <Input onChange={handleChange} id={emailId} value={email} type='email' name="email" maxW='360px' />
+        <Input onChange={handleChange} id={emailId} value={email} type='email' name="email"  maxW={[150, 270]} />
       </Box>
       <Box mb='20px'>
         <FormLabel htmlFor={passwordId}>Password:</FormLabel>
-        <Input onChange={handleChange} id={passwordId} value={password} type="password" name="password" maxW='360px' />
+        <Input onChange={handleChange} id={passwordId} value={password} type="password" name="password" maxW={[150, 270]} />
       </Box>
       <Center><Button type='submit' colorScheme='teal' >
-    LOGIN
+    Log in
   </Button></Center>
       
     </FormControl>
