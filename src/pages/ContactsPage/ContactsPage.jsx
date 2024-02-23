@@ -5,7 +5,7 @@ import ContactsList from '../../components/ContactsList/ContactsList'
 import Filter from "../../components/Filter/Filter";
 import { fetchContacts } from '../../redux/contacts/contacts-operations'
 import { selectContacts } from '../../redux/contacts/contacts-selectors'
-import { Heading, Box, Center,CircularProgress } from '@chakra-ui/react'
+import { Heading, Center,CircularProgress, Box, Alert, AlertIcon } from '@chakra-ui/react'
 
 
 const ContactsPage = () => {
@@ -19,12 +19,15 @@ const ContactsPage = () => {
       }, [dispatch])
 
     return (
-      <Box mt='50px'>
+      <Box   mt='50px'>
         <Heading size='md' mt='0px'>Your phonebook</Heading>
         <ContactsForm />
         {/* якщо є список контактів рендеримо розмітку, якщо пусто - то ні */}
         {isLoading && <Center ><CircularProgress isIndeterminate color='teal' /></Center>}
-        {error && <p>{error}</p>}
+        {error && <Alert w={[208, 328]} mt='20px' borderRadius='10px' status='error'>
+    <AlertIcon />
+    {error}
+  </Alert> }
         {Boolean(items.length) && <>
           <Filter/>
           <ContactsList />

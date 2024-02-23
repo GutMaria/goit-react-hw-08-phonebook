@@ -17,14 +17,13 @@ const Navbar = () => {
 
   return (<Container m='60px auto' p='0px 40px' width='auto' >
     <Flex  justifyContent="end" alignItems='center'>
-      {/* <ChakraLink as={Link} to="/contacts">My phone book</ChakraLink> */}
       {isLogin ? <NavbarUser /> : <NavbarAuth />}
     </Flex>
     
 
     
     
-    <Suspense fallback={<p>...loading Suspense</p>}>
+    <Suspense fallback={<Center h='100vh'><CircularProgress isIndeterminate color='teal'/></Center>}>
       <Outlet />
     </Suspense>
     

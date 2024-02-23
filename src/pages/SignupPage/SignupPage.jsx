@@ -1,16 +1,14 @@
 import SignupForm from "../../components/SignupForm/SignupForm"
 import {  useDispatch, useSelector } from "react-redux"
 import {signup} from '../../redux/auth/auth-operaions'
-import {selectAuthLoading, selectAuthError, selectIsLogin, selectUser} from '../../redux/auth/auth-selectors'
-
+import { selectAuthLoading, selectAuthError } from '../../redux/auth/auth-selectors'
+import { CircularProgress, Center, AlertIcon, Alert} from '@chakra-ui/react'
 
 
 
 const SignupPage = () => {
   const loading = useSelector(selectAuthLoading);
   const error = useSelector(selectAuthError);
-  const isLogin = useSelector(selectIsLogin);
-  const { name } = useSelector(selectUser);
 
   const dispatch = useDispatch();
 
@@ -21,9 +19,11 @@ const SignupPage = () => {
   return (<>
     <h1>Please register</h1>
     <SignupForm onSubmit={handleSignup } />
-    {loading && <p>...loading</p>}
-    {error && <p>Помилка: {error}</p>}
-    {isLogin && <h3>Вітаємо { name}</h3>}
+    {loading && <Center h='100px'><CircularProgress isIndeterminate color='teal'/></Center>}
+    {error && <Alert w={[208, 328]} mt='20px' borderRadius='10px' status='error'>
+    <AlertIcon />
+    {error}
+  </Alert> }
         </> )
 }
 
