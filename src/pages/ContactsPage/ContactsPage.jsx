@@ -5,27 +5,27 @@ import ContactsList from '../../components/ContactsList/ContactsList'
 import Filter from "../../components/Filter/Filter";
 import { fetchContacts } from '../../redux/contacts/contacts-operations'
 import { selectContacts } from '../../redux/contacts/contacts-selectors'
-import { Heading, Box } from '@chakra-ui/react'
+import { Heading, Box, Center,CircularProgress } from '@chakra-ui/react'
 
 
 const ContactsPage = () => {
 
   const {items, isLoading, error} = useSelector(selectContacts);
 
-      const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  
       useEffect(() => {
-        dispatch(fetchContacts())
-      },[dispatch])
+      dispatch(fetchContacts())
+      }, [dispatch])
 
     return (
       <Box mt='50px'>
         <Heading size='md' mt='0px'>Your phonebook</Heading>
         <ContactsForm />
         {/* якщо є список контактів рендеримо розмітку, якщо пусто - то ні */}
-        {isLoading && <p>...Loading</p>}
+        {isLoading && <Center ><CircularProgress isIndeterminate color='teal' /></Center>}
         {error && <p>{error}</p>}
         {Boolean(items.length) && <>
-          {/* <h2>Contacts</h2> */}
           <Filter/>
           <ContactsList />
         </>
