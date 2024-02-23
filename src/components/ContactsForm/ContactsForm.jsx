@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectContacts} from '../../redux/contacts/contacts-selectors'
 import { addContact } from '../../redux/contacts/contacts-operations'
-// import { nanoid } from "nanoid";
-// import css from './contacts-form.module.css'
 import {  Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react'
 
 const INITIAL_STATE = {
@@ -14,24 +12,28 @@ const INITIAL_STATE = {
 
 const ContactsForm = () => {
   const [state, setState] = useState(INITIAL_STATE);
+  const [isAddingContact, setIsAddingContact] = useState(false);
 
   const {items} = useSelector(selectContacts);
   const dispatch = useDispatch();
 
 
 
-  const onAddContact = (data) => {
+  const onAddContact = async (data) => {
+    setIsAddingContact(true);
     // Якщо контакт вже існує:
     const isExist = items.some(
       (contact) => contact.name.toLowerCase() === data.name.toLowerCase());
     
     if (isExist) {
       alert(`${data.name} is already in contacts.`);
+      setIsAddingContact(false);
       return
     }
 
-    dispatch(addContact(data));
-    setState({...INITIAL_STATE});
+    await dispatch(addContact(data));
+    setState({ ...INITIAL_STATE });
+    setIsAddingContact(false);
   };
 
   // let contactNameId = nanoid();
@@ -57,8 +59,11 @@ const ContactsForm = () => {
         <Box mb='20px'>
         <FormLabel fontSize='sm'>Number</FormLabel>
           <Input value={state.number} type="tel" size='sm'  name="number" onChange={handleChange} maxW={[150, 270]}/>
-        </Box>
-          <Button type="submit" colorScheme='teal' size='sm' >Add contact</Button>
+          </Box>
+          {isAddingContact ? <Button isLoading colorScheme='teal' size='sm' w='110px' variant='solid'>
+    Email
+  </Button> : <Button type="submit" colorScheme='teal' size='sm' w='110px' >Add contact</Button> }
+          
           </FormControl>
       </form>
     )
