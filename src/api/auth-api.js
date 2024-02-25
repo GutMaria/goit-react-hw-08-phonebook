@@ -11,7 +11,6 @@ const setToken = token => {
   }
   authInstance.defaults.headers.authorization = '';
 };
-// ------------------------------------------------
 
 export const requestSignUp = async body => {
   const response = await authInstance.post('/users/signup', body);

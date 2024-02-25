@@ -24,8 +24,6 @@ const LoginForm = ({onSubmit}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(state);
-    // setState({ ...INITIAL_STATE })
-    
   }
 
   return (<form onSubmit={handleSubmit} style={{ maxWidth: '360px' }}>

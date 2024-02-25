@@ -44,7 +44,6 @@ const authSlice = createSlice({
       .addCase(current.pending, pending)
       .addCase(current.fulfilled, (state, { payload }) => {
         state.user = payload;
-        // токен не перезаписуємо бо він не приходить у відповідь
         state.isLoading = false;
         state.isLogin = true;
       })
@@ -66,5 +65,4 @@ const authSlice = createSlice({
   },
 });
 
-// const authReducer = authSlice.reducer;
 export default authSlice.reducer;

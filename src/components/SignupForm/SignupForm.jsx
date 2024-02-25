@@ -24,9 +24,7 @@ const SignupForm = ({onSubmit}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(state);
-    // setState({ ...INITIAL_STATE })
-    
+    onSubmit(state);    
   }
 
   return (

@@ -36,9 +36,6 @@ const ContactsForm = () => {
     setIsAddingContact(false);
   };
 
-  // let contactNameId = nanoid();
-  // let contactNumberId = nanoid();
-
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setState( prevState =>({...prevState, [name]: value }));

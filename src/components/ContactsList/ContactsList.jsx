@@ -2,8 +2,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { deleteContact } from '../../redux/contacts/contacts-operations'
 import { selectVisibleContacts } from '../../redux/contacts/contacts-selectors'
-
-// import css from './list.module.css'
 import { Box, Button, Wrap, WrapItem } from '@chakra-ui/react'
 
 const ContactsList = () => {
