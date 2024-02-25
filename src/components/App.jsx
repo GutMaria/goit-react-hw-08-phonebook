@@ -11,9 +11,6 @@ const ContactsPage = lazy(() => import('../pages/ContactsPage/ContactsPage'))
 const SignupPage = lazy(() => import('../pages/SignupPage/SignupPage'))
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'))
 const NotFoundPage = lazy(()=> import('../pages/NotFoundPage/NotFoundPage'))
-// import ContactsPage from '../pages/ContactsPage/ContactsPage'
-// import SignupPage from '../pages/SignupPage/SignupPage'
-// import LoginPage from '../pages/LoginPage/LoginPage'
 
 
 const App = () => {

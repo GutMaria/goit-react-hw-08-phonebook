@@ -2,7 +2,8 @@ import SignupForm from "../../components/SignupForm/SignupForm"
 import {  useDispatch, useSelector } from "react-redux"
 import {signup} from '../../redux/auth/auth-operaions'
 import { selectAuthLoading, selectAuthError } from '../../redux/auth/auth-selectors'
-import { CircularProgress, Center, AlertIcon, Alert} from '@chakra-ui/react'
+import { CircularProgress, Center, Heading, Box } from '@chakra-ui/react'
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
 
@@ -16,15 +17,12 @@ const SignupPage = () => {
     dispatch(signup(body))
   }
   
-  return (<>
-    <h1>Please register</h1>
+  return (<Box mt={["30px", '50px'] }>
+    <Heading size='lg' mt='0px' >Please register</Heading>
     <SignupForm onSubmit={handleSignup } />
     {loading && <Center h='100px'><CircularProgress isIndeterminate color='teal'/></Center>}
-    {error && <Alert w={[208, 328]} mt='20px' borderRadius='10px' status='error'>
-    <AlertIcon />
-    {error}
-  </Alert> }
-        </> )
+    {error && (Notify.failure('Oops, something went wrong, please try again')) }
+        </Box> )
 }
 
 export default SignupPage

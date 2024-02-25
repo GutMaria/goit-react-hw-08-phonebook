@@ -5,8 +5,9 @@ import ContactsList from '../../components/ContactsList/ContactsList'
 import Filter from "../../components/Filter/Filter";
 import { fetchContacts } from '../../redux/contacts/contacts-operations'
 import { selectContacts } from '../../redux/contacts/contacts-selectors'
-import { Heading, Box, Alert, AlertIcon } from '@chakra-ui/react'
-import { Center,CircularProgress } from '@chakra-ui/react'
+import { Heading, Box} from '@chakra-ui/react'
+import { Center, CircularProgress } from '@chakra-ui/react'
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
 const ContactsPage = () => {
@@ -24,10 +25,10 @@ const ContactsPage = () => {
     }
   }, [dispatch, isFirstMount]);
 
-    return (
-      <Box mt='50px'>
+  return (
+    <Box mt={["30px", '50px'] }>
         {isFirstMount && <Center ><CircularProgress isIndeterminate color='teal' /></Center>}
-        <Heading size='md' mt='0px'>Your phonebook</Heading>
+        <Heading size='md' mt='0px' >Your contacts</Heading>
         <ContactsForm />
         {/* якщо є список контактів рендеримо розмітку, якщо пусто - то ні */}
         {Boolean(items.length) && <>
@@ -35,10 +36,7 @@ const ContactsPage = () => {
           <ContactsList />
         </>
         }
-        {error && <Alert w={[208, 328]} mt='20px' borderRadius='10px' status='error'>
-    <AlertIcon />
-    {error}
-  </Alert> }
+        {error && (Notify.failure('Oops, something went wrong, please try again')) }
       </Box>
     );
   }

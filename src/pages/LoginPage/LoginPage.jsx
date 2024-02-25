@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { Navigate } from "react-router-dom";
 import {login} from '../../redux/auth/auth-operaions'
 import { selectAuthLoading, selectAuthError, selectIsLogin } from '../../redux/auth/auth-selectors'
-import { CircularProgress, Center, AlertIcon, Alert} from '@chakra-ui/react'
+import { CircularProgress, Center, Heading, Box } from '@chakra-ui/react'
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 
 
 
@@ -21,17 +23,19 @@ const LoginPage = () => {
 
   if(isLogin) {
         return <Navigate to="/contacts" /> 
-    }
+  }
   
-  return (<>
-    <h1>Please log in</h1>
+  Notify.init({
+width: '300px',
+position: 'center-top',
+  });
+  
+  return (<Box mt={["30px", '50px'] }>
+    <Heading size='lg' mt='0px' >Please log in</Heading>
     <LoginForm onSubmit={handleLogin } />
     {loading && <Center h='100px'><CircularProgress isIndeterminate color='teal'/></Center>}
-    {error && <Alert w={[208, 328]} mt='20px' borderRadius='10px' status='error'>
-    <AlertIcon />
-    {error}
-  </Alert> }
-        </> )
+    {error && (Notify.failure('Oops, something went wrong, please try again')) }
+        </Box> )
 }
 
 export default LoginPage

@@ -12,9 +12,9 @@ const NavbarUser = ()=> {
     const onLogout = ()=> dispatch(logout());
 
     return (
-        <Flex >
-            <Text fontSize='2xl' color='teal' fontWeight='bold' m='0px 15px'>{name}</Text> 
-            <Button onClick={onLogout}  type="button" colorScheme='teal' variant='outline'>Log out</Button>
+        <Flex flexDirection={["column", "row"]} alignItems='baseline' >
+            <Text fontSize='xl' color='teal' fontWeight='medium' mr='15px' mb='10px'>{name}</Text> 
+            <Button onClick={onLogout} w='80px' type="button" colorScheme='teal' variant='outline'>Log out</Button>
         </Flex>
     )
 }
