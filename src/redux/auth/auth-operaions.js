@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 import {
   requestSignUp,
   requestLogin,
@@ -62,3 +62,5 @@ export const logout = createAsyncThunk(
     }
   }
 );
+
+export const clearAuthError = createAction('auth/clearError');

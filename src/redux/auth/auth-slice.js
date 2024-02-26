@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, signup, current, logout } from './auth-operaions';
+import {
+  login,
+  signup,
+  current,
+  logout,
+  clearAuthError,
+} from './auth-operaions';
 
 const initialState = {
   user: {},
@@ -61,7 +67,10 @@ const authSlice = createSlice({
         state.user = {};
         state.token = '';
       })
-      .addCase(logout.rejected, rejected);
+      .addCase(logout.rejected, rejected)
+      .addCase(clearAuthError, state => {
+        state.error = null;
+      });
   },
 });
 
